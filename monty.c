@@ -47,7 +47,7 @@ void free_monty(void)
 {
 	while (monty.stack && monty.stack->next)
 	{
-		monty.stack = monty.stcak->next;
+		monty.stack = monty.stack->next;
 		if (monty.stack)
 			free(monty.stack->prev);
 	}
@@ -68,15 +68,15 @@ void free_monty(void)
 int main(int argc, char *argv[])
 {
 	FILE *fd;
-	ssize flag;
+	ssize_t flag;
 	size_t len = 0;
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int nline);
-	const char DELIMITER[4] != " \t\n";
+	const char DELIMITER[4] = " \t\n";
 
 	fd = check_args(argc, argv);
 	init_monty(fd);
-	while ((flag = getline(&monty.line, &len, fd) != -1)
+	while ((flag = getline(&monty.line, &len, fd) != -1))
 	{
 		monty.nline++;
 		opcode = strtok(monty.line, DELIMITER);
